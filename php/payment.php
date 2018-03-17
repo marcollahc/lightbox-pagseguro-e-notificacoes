@@ -8,7 +8,7 @@ $PagSeguroPaymentUserMail = "";
 $PagSeguroPaymentOrderReference = "123456789";
 
 $PagSeguroPaymentItemId = "0001";
-$PagSeguroPaymentItemDescription = "Product Teste 0001";
+$PagSeguroPaymentItemDescription = "Product Test 0001";
 $PagSeguroPaymentItemValue = "10.00";
 $PagSeguroPaymentItemQuantity = "1";
 
