@@ -1,0 +1,40 @@
+<%
+' https://dev.pagseguro.uol.com.br/documentacao/pagamento-online/pagamentos/pagamento-lightbox/api-de-pagamentos-lightbox
+' https://dev.pagseguro.uol.com.br/referencia-da-api/api-de-pagamentos-pagseguro#!/ws_pagseguro_uol_com_br/v2_checkout_xml
+' https://dev.pagseguro.uol.com.br/documentacao/pagamento-online/notificacoes/api-de-notificacoes
+' https://dev.pagseguro.uol.com.br/referencia-da-api/api-de-pagamentos-pagseguro#!/ws_pagseguro_uol_com_br/notifications_xml
+
+PagSeguroMode = "Development" ' Development / Production
+
+if PagSeguroMode = "Production" Then
+
+    PagSeguroMailAuthentication = ""
+    PagSeguroTokenAuthentication = ""
+
+    PagSeguroLightboxScript = "https://stc.pagseguro.uol.com.br/pagseguro/api/v2/checkout/pagseguro.lightbox.js"
+
+    PagSeguroUrlCheckout = "https://ws.pagseguro.uol.com.br/v2/checkout?email={PagSeguroMailAuthentication}&token={PagSeguroTokenAuthentication}"
+    PagSeguroUrlPaymentMobile = "https://pagseguro.uol.com.br/v2/checkout/payment.html?code={PagSeguroTransactionCode}"
+    PagSeguroUrlNotification = "https://ws.pagseguro.uol.com.br/v3/transactions/notifications/{PagSeguroNotificationCode}?email={PagSeguroMailAuthentication}&token={PagSeguroTokenAuthentication}"
+    PagSeguroUrlRedirect = "http://localhost/return.asp"
+    
+Else
+
+    PagSeguroMailAuthentication = ""
+    PagSeguroTokenAuthentication = ""
+
+    PagSeguroLightboxScript = "https://stc.sandbox.pagseguro.uol.com.br/pagseguro/api/v2/checkout/pagseguro.lightbox.js"
+
+    PagSeguroUrlCheckout = "https://ws.sandbox.pagseguro.uol.com.br/v2/checkout?email={PagSeguroMailAuthentication}&token={PagSeguroTokenAuthentication}"
+    PagSeguroUrlPaymentMobile = "https://sandbox.pagseguro.uol.com.br/v2/checkout/payment.html?code={PagSeguroTransactionCode}"
+    PagSeguroUrlNotification = "https://ws.pagseguro.uol.com.br/v3/transactions/notifications/{PagSeguroNotificationCode}?email={PagSeguroMailAuthentication}&token={PagSeguroTokenAuthentication}"
+    PagSeguroUrlRedirect = "http://localhost/return.asp"
+
+End If
+
+PagSeguroUrlCheckout = Replace(PagSeguroUrlCheckout, "{PagSeguroMailAuthentication}", PagSeguroMailAuthentication)
+PagSeguroUrlCheckout = Replace(PagSeguroUrlCheckout, "{PagSeguroTokenAuthentication}", PagSeguroTokenAuthentication)
+
+PagSeguroUrlNotification = Replace(PagSeguroUrlNotification, "{PagSeguroMailAuthentication}", PagSeguroMailAuthentication)
+PagSeguroUrlNotification = Replace(PagSeguroUrlNotification, "{PagSeguroTokenAuthentication}", PagSeguroTokenAuthentication)
+%>

@@ -1,0 +1,40 @@
+<?php
+// https://dev.pagseguro.uol.com.br/documentacao/pagamento-online/pagamentos/pagamento-lightbox/api-de-pagamentos-lightbox
+// https://dev.pagseguro.uol.com.br/referencia-da-api/api-de-pagamentos-pagseguro#!/ws_pagseguro_uol_com_br/v2_checkout_xml
+// https://dev.pagseguro.uol.com.br/documentacao/pagamento-online/notificacoes/api-de-notificacoes
+// https://dev.pagseguro.uol.com.br/referencia-da-api/api-de-pagamentos-pagseguro#!/ws_pagseguro_uol_com_br/notifications_xml
+
+$PagSeguroMode = "Development"; // Development / Production;
+
+if ($PagSeguroMode === "Development") {
+
+    $PagSeguroMailAuthentication = "";
+    $PagSeguroTokenAuthentication = "";
+
+    $PagSeguroLightboxScript = "https://stc.pagseguro.uol.com.br/pagseguro/api/v2/checkout/pagseguro.lightbox.js";
+
+    $PagSeguroUrlCheckout = "https://ws.pagseguro.uol.com.br/v2/checkout?email={PagSeguroMailAuthentication}&token={PagSeguroTokenAuthentication}";
+    $PagSeguroUrlPaymentMobile = "https://pagseguro.uol.com.br/v2/checkout/payment.html?code={PagSeguroTransactionCode}";
+    $PagSeguroUrlNotification = "https://ws.pagseguro.uol.com.br/v3/transactions/notifications/{PagSeguroNotificationCode}?email={PagSeguroMailAuthentication}&token={PagSeguroTokenAuthentication}";
+    $PagSeguroUrlRedirect = "";
+    
+} else {
+
+    $PagSeguroMailAuthentication = "";
+    $PagSeguroTokenAuthentication = "";
+
+    $PagSeguroLightboxScript = "https://stc.sandbox.pagseguro.uol.com.br/pagseguro/api/v2/checkout/pagseguro.lightbox.js";
+
+    $PagSeguroUrlCheckout = "https://ws.sandbox.pagseguro.uol.com.br/v2/checkout?email={PagSeguroMailAuthentication}&token={PagSeguroTokenAuthentication}";
+    $PagSeguroUrlPaymentMobile = "https://sandbox.pagseguro.uol.com.br/v2/checkout/payment.html?code={PagSeguroTransactionCode}";
+    $PagSeguroUrlNotification = "https://ws.pagseguro.uol.com.br/v3/transactions/notifications/{PagSeguroNotificationCode}?email={PagSeguroMailAuthentication}&token={PagSeguroTokenAuthentication}";
+    $PagSeguroUrlRedirect = "";
+
+}
+
+$PagSeguroUrlCheckout = str_replace("{PagSeguroMailAuthentication}", $PagSeguroMailAuthentication, $PagSeguroUrlCheckout);
+$PagSeguroUrlCheckout = str_replace("{PagSeguroTokenAuthentication}", $PagSeguroTokenAuthentication, $PagSeguroUrlCheckout);
+
+$PagSeguroUrlNotification = str_replace("{PagSeguroMailAuthentication}", $PagSeguroMailAuthentication, $PagSeguroUrlNotification);
+$PagSeguroUrlNotification = str_replace("{PagSeguroTokenAuthentication}", $PagSeguroTokenAuthentication, $PagSeguroUrlNotification);
+?>
